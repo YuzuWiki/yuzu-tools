@@ -20,7 +20,7 @@ def getLogger() -> "__logging.Logger":
     global __logger
 
     if not __logger:
-        __logger = __logging.getLogger("ygfans")
+        __logger = __logging.getLogger("yuzu_tools")
 
     class Proxy:
         def __getattr__(self, item):

@@ -23,7 +23,7 @@ def _with_context(conn: "Redis", key: str, suffix: str) -> "Redis":
 class TestRedisCounter(object):
     _conn: "Redis" = None
 
-    queue_key: str = "ygfans_frams:tests:redis_counter"
+    queue_key: str = "yuzuwiki:tests:redis_counter"
     _counter_key: str = None
 
     @property
@@ -72,7 +72,7 @@ class TestRedisCounter(object):
 class TestRedisQueue(object):
     _conn: "Redis" = None
 
-    queue_key: str = "ygfans_frams:tests:redis_queue"
+    queue_key: str = "yuzuwiki:tests:redis_queue"
 
     @property
     def counter_suffix(self) -> str:

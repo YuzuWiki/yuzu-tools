@@ -4,7 +4,7 @@ from setuptools import setup
 
 
 setup(
-    name="ygfans",
+    name="yuzu_tools",
     install_requires=[
         "redis",
         "flask",

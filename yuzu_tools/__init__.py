@@ -26,3 +26,4 @@ from wrapper.api_wapper import ApiWrapper
 
 
 __version__ = "v0.0.3"
+__name__ = "yuzu_tools"

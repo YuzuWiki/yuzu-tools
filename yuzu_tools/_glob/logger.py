@@ -1,6 +1,8 @@
 from typing import Union
 import logging as __logging
 
+from yuzu_tools import __name__ as Frame_Name
+
 __logging.basicConfig(level=__logging.INFO)
 __logger: Union[__logging.Logger,None] = None
 
@@ -11,12 +13,7 @@ def setLogger(logger: "__logging.Logger"):
         __logger = logger
 
 
-def _getLogger() -> "__logging.Logger":
-    global __logger
-    return __logger
-
-
-def getLogger() -> "__logging.Logger":
+def getLogger(name: str = Frame_Name) -> "__logging.Logger":
     global __logger
 
     if not __logger:
@@ -25,7 +22,7 @@ def getLogger() -> "__logging.Logger":
     class Proxy:
         def __getattr__(self, item):
             global __logger
-            return getattr(_getLogger(), item)
+            return getattr(__logger, item)
 
-    return Proxy()
+    return Proxy() # noqa
 

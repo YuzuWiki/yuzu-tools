@@ -42,7 +42,7 @@ class RedisCounter(object):
     def decr(self, decr: int = 1) -> int:
         return self.conn.decr(self.key, decr)
 
-    def set(self, cnt: int, ttl: int = -1) -> bool:
+    def set(self, cnt: int, ttl: int = 30) -> bool:
         if ttl > 0:
             return self.conn.setex(name=self.key, time=ttl, value=cnt)
         else:

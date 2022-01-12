@@ -33,7 +33,6 @@ def getLogger(name: str = Frame_Name, level: int = __logging.DEBUG) -> "__loggin
         __logger = __logging.Logger(name)
         __logger.addHandler(handler)
 
-
     class Proxy:
         def __getattr__(self, level):
             global __logger

@@ -2,9 +2,13 @@ class BaseError(Exception):
     ...
 
 
-class WrapperError(Exception):
+class WrapperError(BaseError):
     ...
 
 
-class RpcError(Exception):
+class RpcError(BaseError):
+    ...
+
+
+class RedisError(BaseError):
     ...

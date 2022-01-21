@@ -6,7 +6,7 @@ from redis import (
     ConnectionPool as _ConnectionPool
 )
 
-from _glob import logger
+from yuzu_tools._glob import logger
 
 _REDIS_VALUE = Union[bytes, float, int, str]
 _JSON_VALUE = Union[dict, set, tuple, list]

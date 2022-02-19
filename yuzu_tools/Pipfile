@@ -7,6 +7,8 @@ name = "pypi"
 redis = "*"
 flask = "*"
 grpcio = "*"
+loguru = "==0.6.0"
+websockets = "==10.1"
 
 [dev-packages]
 pytest = "*"

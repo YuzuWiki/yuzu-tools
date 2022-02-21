@@ -1,5 +1,4 @@
-__all__ = ["getLogger", "setLogger"]
+__all__ = ["logger"]
 
-from yuzu_tools._glob.logger import getLogger, setLogger
+from ._logger import logger
 
-logger = getLogger()

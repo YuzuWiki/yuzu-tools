@@ -7,7 +7,6 @@ setup(
     name="yuzu_tools",
     install_requires=[
         "redis",
-        "flask",
         "grpcio"
     ],
 )

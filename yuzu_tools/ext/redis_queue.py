@@ -1,18 +1,15 @@
 import json
 from typing import Union
 
-from redis import (
-    Redis as _Redis,
-    ConnectionPool as _ConnectionPool
-)
-
 from _glob import logger
+from redis import ConnectionPool as _ConnectionPool
+from redis import Redis as _Redis
 
 _REDIS_VALUE = Union[bytes, float, int, str]
 _JSON_VALUE = Union[dict, set, tuple, list]
 
 
-def _fmt_item(body:  Union[_REDIS_VALUE, _JSON_VALUE]) -> _REDIS_VALUE:
+def _fmt_item(body: Union[_REDIS_VALUE, _JSON_VALUE]) -> _REDIS_VALUE:
     if isinstance(body, (bytes, float, int, str)):
         return body
     else:
@@ -60,21 +57,23 @@ class RedisCounter(object):
         self.conn.close()
 
     def __del__(self):
-        try:
-            self.close()
-        except:
-            ...
+        self.close()
 
 
 class RedisQueue(object):
     _coon = None
     _counter_suffix: str = "counter"
 
-    def __init__(self, queue_key: str, conn: "_Redis" = None, conn_pool: "_ConnectionPool" = None,
-                 default_ttl: int = -1, max_size: int = -1):
+    def __init__(
+        self,
+        queue_key: str,
+        conn: "_Redis" = None,
+        conn_pool: "_ConnectionPool" = None,
+        default_ttl: int = -1,
+        max_size: int = -1,
+    ):
         assert conn or conn_pool, "RedisQueue: MISS redis conn"
         assert queue_key, "RedisQueue: MISS redis queue_key"
-
 
         # 初始化队列基础信息
         self._default_ttl: int = default_ttl
@@ -85,7 +84,9 @@ class RedisQueue(object):
         self._counter = RedisCounter(queue_key=queue_key, conn=self.conn)
 
     @staticmethod
-    def _get_conn(conn: "_Redis" = None, conn_pool: "_ConnectionPool" = None) -> "_Redis":
+    def _get_conn(
+        conn: "_Redis" = None, conn_pool: "_ConnectionPool" = None
+    ) -> "_Redis":
         if conn:
             return conn
         else:
@@ -158,11 +159,8 @@ class RedisQueue(object):
             logger.error(f"[Redis Queue] Error: key = {self.key}   error = {exc_val}")
 
     def __del__(self):
-        try:
-            # close 计数器 conn
-            self._counter.close()
+        # close 计数器 conn
+        self._counter.close()
 
-            # close queue conn
-            self.conn.close()
-        except:
-            ...
+        # close queue conn
+        self.conn.close()

@@ -11,6 +11,7 @@ websockets = "==10.1"
 fastapi = "==0.73.0"
 uvicorn = "==0.17.4"
 python-dotenv = "*"
+pre-commit = "*"
 
 [dev-packages]
 pytest = "*"
